@@ -1,15 +1,14 @@
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-namespace UnityStandardAssets.Characters.ThirdPerson
+namespace TankEngine.Scripts
 {
     [RequireComponent(typeof(TankPersonCharacter))]
     public class TankPersonUserControl : MonoBehaviour
     {
 
-        private TankPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
-        [SerializeField] private Vector3 Forward;
-        [SerializeField] private Vector3 Right;
+        [SerializeField] public BoxCollider InteractionCollider;
+        private TankPersonCharacter m_Character; // A reference to the TankPersonCharacter on the object.
 
         private void Start()
         {

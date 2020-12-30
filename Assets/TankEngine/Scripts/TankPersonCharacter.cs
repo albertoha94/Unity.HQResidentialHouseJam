@@ -1,12 +1,13 @@
 using UnityEngine;
 
-namespace UnityStandardAssets.Characters.ThirdPerson
+namespace TankEngine.Scripts
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(Animator))]
     public class TankPersonCharacter : MonoBehaviour
     {
+        [SerializeField] bool enableAutoCrouch = false;
         [SerializeField] float m_MovingTurnSpeed = 360;
         [SerializeField] float m_StationaryTurnSpeed = 180;
         [SerializeField] float m_JumpPower = 12f;
@@ -85,12 +86,16 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
             else
             {
-                Ray crouchRay = new Ray(m_Rigidbody.position + Vector3.up * m_Capsule.radius * k_Half, Vector3.up);
-                float crouchRayLength = m_CapsuleHeight - m_Capsule.radius * k_Half;
-                if (Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength))
+
+                if (enableAutoCrouch)
                 {
-                    m_Crouching = true;
-                    return;
+                    Ray crouchRay = new Ray(m_Rigidbody.position + Vector3.up * m_Capsule.radius * k_Half, Vector3.up);
+                    float crouchRayLength = m_CapsuleHeight - m_Capsule.radius * k_Half;
+                    if (Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength))
+                    {
+                        m_Crouching = true;
+                        return;
+                    }
                 }
                 m_Capsule.height = m_CapsuleHeight;
                 m_Capsule.center = m_CapsuleCenter;
@@ -191,7 +196,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             RaycastHit hitInfo;
 #if UNITY_EDITOR
             // helper to visualise the ground check ray in the scene view
-            Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance));
+            Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance), Color.magenta);
 #endif
             // 0.1f is a small offset to start the ray from inside the character
             // it is also good to note that the transform position in the sample assets is at the base of the character
