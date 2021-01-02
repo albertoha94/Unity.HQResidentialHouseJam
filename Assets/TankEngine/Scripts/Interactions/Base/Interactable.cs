@@ -2,7 +2,7 @@
 using TankEngine.Scripts.AbstractClasses;
 using UnityEngine;
 
-namespace TankEngine.Scripts.Interactions
+namespace TankEngine.Scripts.Interactions.Base
 {
 
     /// <summary>

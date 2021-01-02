@@ -1,46 +1,66 @@
 ﻿using System.Collections;
-using UnityEngine;
+using TankEngine.Scripts.Interactions.Base;
 
 namespace TankEngine.Scripts.Interactions
 {
 
     /// <summary>
-    /// Used as basic interaction, displays a simple text string.
+    /// Used as basic interaction, displays a series of text strings.
     /// </summary>
     public class InteractionBasic : Interactable
     {
 
-        public string interactionMessage;
-        bool isMessageWritten = false;
+        public string[] interactionMessages;
+        bool isCurrentMessageWritten;
+        int messageIndex;
 
         public override IEnumerator PerformInteraction()
         {
-            isMessageWritten = false;
-            GameManager.StopTime();
-            yield return GameManager.uIAssistant.Write(interactionMessage, true, () => isMessageWritten = true);
+            messageIndex = 0;
+            isCurrentMessageWritten = false;
+            yield return WriteUISingle(true);
         }
 
         public override InteractionTypes GetInteractionType()
         {
-            return InteractionTypes.BasicInteraction;
+            return InteractionTypes.Basic;
         }
 
         public override bool IsCompleted()
         {
-            return isMessageWritten;
+            return isCurrentMessageWritten && messageIndex == interactionMessages.Length - 1;
         }
 
         public override IEnumerator ForceComplete()
         {
-            isMessageWritten = false;
-            GameManager.uIAssistant.PauseWriting();
-            yield return GameManager.uIAssistant.Write(interactionMessage, false, () => isMessageWritten = true);
+            if (isCurrentMessageWritten)
+            {
+                messageIndex++;
+                isCurrentMessageWritten = false;
+                yield return WriteUISingle(true);
+            }
+            else
+            {
+                GameManager.uIAssistant.PauseWriting();
+                isCurrentMessageWritten = false;
+                yield return WriteUISingle(false);
+            }
         }
 
         public override void OnComplete()
         {
-            GameManager.uIAssistant.CleanText();
-            GameManager.ResumeTime();
+            GameManager.uIAssistant.CleanOptionsCanvas();
+        }
+
+        /// <summary>
+        /// Calls the assistant to write a single line to the UI.
+        /// </summary>
+        /// <param name="useWriter">Flag to use the writer.</param>
+        /// <returns>An IEnumerator.</returns>
+        private IEnumerator WriteUISingle(bool useWriter)
+        {
+            var currentMessage = interactionMessages[messageIndex];
+            yield return GameManager.uIAssistant.Write(currentMessage, useWriter, () => isCurrentMessageWritten = true);
         }
     }
 }

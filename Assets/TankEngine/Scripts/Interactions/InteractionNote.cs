@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using TankEngine.Scripts.Interactions;
+﻿using System;
+using System.Collections;
+using TankEngine.Scripts.Interactions.Base;
 using UnityEngine;
 
 public class InteractionNote : Interactable
@@ -13,14 +14,12 @@ public class InteractionNote : Interactable
     public override IEnumerator PerformInteraction()
     {
         isMessageWritten = false;
-        GameManager.StopTime();
-        GameManager.PlaySound(SoundIn);
         yield return GameManager.uIAssistant.SetNote(noteMessage, backgroundTexture, () => isMessageWritten = true);
     }
 
     public override InteractionTypes GetInteractionType()
     {
-        return InteractionTypes.NoteInteraction;
+        return InteractionTypes.Note;
     }
 
     public override bool IsCompleted()
@@ -30,15 +29,12 @@ public class InteractionNote : Interactable
 
     public override IEnumerator ForceComplete()
     {
-        isMessageWritten = false;
-        GameManager.uIAssistant.PauseWriting();
-        yield return GameManager.uIAssistant.Write(noteMessage, backgroundTexture, () => isMessageWritten = true);
+        throw new NotImplementedException();
     }
 
     public override void OnComplete()
     {
         GameManager.uIAssistant.RemoveNote();
-        GameManager.ResumeTime();
         Destroy(gameObject);
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using TankEngine.Scripts.Interactions.Base;
 using UnityEngine;
 
 namespace TankEngine.Scripts.Interactions
