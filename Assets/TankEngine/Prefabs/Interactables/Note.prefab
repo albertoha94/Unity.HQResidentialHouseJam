@@ -9,11 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2703072614077561236}
-  - component: {fileID: 2703072614082960896}
   - component: {fileID: 2703072614079333702}
+  - component: {fileID: 3298510873546174857}
   - component: {fileID: 2713636733381338080}
   - component: {fileID: 2366260524689271029}
-  - component: {fileID: 3298510873546174857}
   m_Layer: 0
   m_Name: Note
   m_TagString: Untagged
@@ -36,22 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 89.997, z: 0}
---- !u!111 &2703072614082960896
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2703072614077186716}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0432602ea91dbd141a66b66f5348b8aa, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 0432602ea91dbd141a66b66f5348b8aa, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 1
 --- !u!65 &2703072614079333702
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65,34 +48,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.42880547, y: 1.8736873, z: 0.10637805}
   m_Center: {x: -0.0023885444, y: 0.94742465, z: 0.16765422}
---- !u!114 &2713636733381338080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2703072614077186716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfa374e2c92c05f469e439c0ae00be70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inZone: 0
-  interaction: {fileID: 2366260524689271029}
---- !u!114 &2366260524689271029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2703072614077186716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b41800a2e111caf458a391bb3933fe76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sparkLocation: {fileID: 0}
-  interactionMessage: Esto es una mesa.
 --- !u!65 &3298510873546174857
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -106,6 +61,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.12577581, y: 0.09956741, z: 0.104586005}
   m_Center: {x: -0.023935579, y: 0.60369253, z: -0.0043743253}
+--- !u!114 &2713636733381338080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2703072614077186716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa374e2c92c05f469e439c0ae00be70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inZone: 0
+  glowPrefab: {fileID: 0}
+  glowLocation: {fileID: 0}
+  interactionSequence:
+  - {fileID: 2366260524689271029}
+--- !u!114 &2366260524689271029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2703072614077186716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b41800a2e111caf458a391bb3933fe76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundIn: {fileID: 0}
+  interactionMessage: []
 --- !u!1 &9050585044636437256
 GameObject:
   m_ObjectHideFlags: 0
