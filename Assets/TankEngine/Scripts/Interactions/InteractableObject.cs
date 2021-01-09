@@ -17,7 +17,7 @@ namespace TankEngine.Scripts.Interactions
 
         #endregion
 
-        [SerializeField] Interactable[] interactionSequence;
+        public Interactable[] InteractionSequence;
 
         GameManager gameManager;
 
@@ -49,7 +49,7 @@ namespace TankEngine.Scripts.Interactions
         {
             if (inZone && other.tag == Tags.PLAYER_INTERACTOR)
             {
-                gameManager.interactionSequence = interactionSequence;
+                gameManager.interactionSequence = InteractionSequence;
             }
         }
 

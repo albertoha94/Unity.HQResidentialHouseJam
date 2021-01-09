@@ -89,12 +89,9 @@ namespace TankEngine.Scripts.Interactions
         }
 
         /// <summary>
-        /// Calls the assistant to write the options in the UI.
+        /// Calls the assistant to write a single line to the UI.
         /// </summary>
-        /// <param name="interactionMessage">List of messages to write.</param>
-        /// <param name="options">Options to display at the end.</param>
         /// <param name="useWriter">Flag to use the writer.</param>
-        /// <param name="onComplete">Action to perform once writing is completed.</param>
         /// <returns>An IEnumerator.</returns>
         private IEnumerator WriteUISingle(bool useWriter)
         {
