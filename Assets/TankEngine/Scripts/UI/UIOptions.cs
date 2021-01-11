@@ -66,6 +66,8 @@ namespace TankEngine.Scripts.UI
                 var instance = Instantiate(optionPrefab, optionsLocation.transform);
                 instance.GetComponent<OptionItem>().SetOption(option);
             }
+
+            SelectOption(0);
         }
 
         /// <summary>
@@ -75,6 +77,9 @@ namespace TankEngine.Scripts.UI
         internal void SelectOption(int newIndex)
         {
             var optionsAvailable = optionsLocation.GetComponentsInChildren<OptionItem>();
+            if (optionsAvailable == null)
+                return;
+
             var previousItem = optionsAvailable.Where((OptionItem item) => item.IsItemSelected() == true).First();
             var newItem = optionsAvailable.ElementAt(newIndex);
 

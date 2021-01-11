@@ -14,6 +14,7 @@ namespace TankEngine.Scripts.Interactions
     {
 
         public string interactionMessage;
+        public bool destroyItemOnFinished = false;
         public bool AreOptionsSet = false;
         [SerializeField] bool isMessageWritten = false;
         [SerializeField] bool isOptionSelectedDone = false;
@@ -44,8 +45,8 @@ namespace TankEngine.Scripts.Interactions
                 if (AreOptionsSet)
                     yield return null;
 
-                GameManager.uIAssistant.WriteOptions(options);
                 AreOptionsSet = true;
+                GameManager.uIAssistant.WriteOptions(options);
             }
             else
             {
@@ -58,6 +59,11 @@ namespace TankEngine.Scripts.Interactions
         public override void OnComplete()
         {
             GameManager.uIAssistant.CleanOptionsCanvas();
+
+            if (destroyItemOnFinished)
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         /// <summary>

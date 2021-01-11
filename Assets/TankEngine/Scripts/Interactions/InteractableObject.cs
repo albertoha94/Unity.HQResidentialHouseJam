@@ -58,7 +58,7 @@ namespace TankEngine.Scripts.Interactions
             if (glowPrefab == null || glowLocation == null)
                 return;
 
-            Instantiate(glowPrefab, glowLocation.position, Quaternion.identity);
+            Instantiate(glowPrefab, glowLocation.position, Quaternion.identity, transform);
         }
     }
 }

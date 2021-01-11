@@ -2,7 +2,7 @@
 using TankEngine.Scripts.Interactions;
 using UnityEngine;
 
-public class BrokenLightSwitchInteraction : GameManagerBehavior
+public class BrokenLightSwitch : GameManagerBehavior
 {
 
     [SerializeField] InteractionBasic interactionToUse;
